@@ -4,20 +4,32 @@ public class MaiorEPosicao {
 	
 	public static void main(String[] args) {
 		
-		
-		int[] lista = new int[100];
-		
-		java.util.Scanner input = new java.util.Scanner(System.in);
-		
-//		for (int i = 0; i <= 100; i++) {
-//			lista[i] = input.nextInt();
-//		}
-		
-		Random rdm = new Random();
-		
-		for (int i : lista) {
-			System.out.println(rdm.nextInt());
-		}
+		 int N =100, X, highest = 0,position = 0;
+	       Random rdm = new Random();
+	       
+	        for (int i = 1; i <= N; i++)
+	        {
+	            X = rdm.nextInt(1000);
+
+	            if (highest > X)
+	            {
+	                highest = highest;
+	                position = position;
+	            }
+	            else
+	            {
+	                highest = X;
+	                position = i;
+	            }
+
+	        }
+	        System.out.print(highest+"\n"+position+"\n");
+
 	}
 
 }
+
+/*
+ * System.out.println("posicao: " + i +" = " + nextInt);
+ * System.out.println("Maior => " + maior + " Posisao => " + posicao);
+ */
