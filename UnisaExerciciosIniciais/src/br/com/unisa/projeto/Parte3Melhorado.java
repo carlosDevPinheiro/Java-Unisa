@@ -6,18 +6,24 @@ import java.util.Scanner;
 
 public class Parte3Melhorado {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		Integer dia, mes , ano, temp = 0, resultMod2, resultMod1, resultMod3;
 
 		Scanner input = new Scanner(System.in);
-		System.out.print("Digite o dia: ");
+		
+		System.out.print("Digite o dia: ");		
 		dia = input.nextInt();
+		ehValido(dia,1,31,"Dia incorreto");
+		
 		System.out.print("Digite o mes: ");
 		mes = input.nextInt();
+		ehValido(mes,1,12,"Dia incorreto");
+		
 		System.out.print("Digite o ano: ");
 		ano = input.nextInt();
-
+		ehValido(ano,1900,2031,"Dia incorreto");
+		
 		input.close();
 
 		Map<Integer, Integer> tbMeses = new HashMap<Integer, Integer>();
@@ -89,6 +95,7 @@ public class Parte3Melhorado {
 
 	}
 
+	
 	public static int ObterMenorMulltiplo(int valor, int multiplicador, boolean podeSerigual) {
 		int varLoop = 0;
 
@@ -102,5 +109,13 @@ public class Parte3Melhorado {
 				varLoop = i;
 		}
 		return varLoop;
+	}
+	
+	public static int ehValido(int value, int minimo, int maximo, String mensagem) throws Exception {
+		
+		if (value < minimo || value > maximo) {		
+			throw new  Exception(mensagem);			
+		} 		
+		return value;
 	}
 }
