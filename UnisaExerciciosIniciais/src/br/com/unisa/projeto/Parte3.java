@@ -7,14 +7,16 @@ public class Parte3 {
 	public static void main(String[] args) {
 
 		Scanner input = new Scanner(System.in);
-		Integer dia = 28, mes = 7, ano = 1990, mesTabela = 0, resultMod2 = 0, resultMod1 =0 , resultMod3 = 0;
+		Integer dia,mes,ano, mesTabela, resultMod2, resultMod1, resultMod3, varLoop = 0;
 
-		System.out.println("Digite o dia: ");
+		System.out.print("Digite o dia: ");
 		dia = input.nextInt();
-		System.out.println("Digite o mes: ");
+		System.out.print("Digite o mes: ");
 		mes = input.nextInt();
-		System.out.println("Digite o ano: ");
+		System.out.print("Digite o ano: ");
 		ano = input.nextInt();
+		
+		input.close();
 
 		// convetendo o mes para a tabela meses da formula
 		switch (mes) {
@@ -54,27 +56,34 @@ public class Parte3 {
 		case 12:
 			mesTabela = 5;
 			break;
+			
+		default:
+			mesTabela = 0;
+			break;
 		}
 
 		// somando o dia + mes da tabela
 		resultMod1 = dia + mesTabela;
-
+		// zerando varivel de loop
+		varLoop = 0;
+		
 		if (resultMod1 > 6) {
-			int variavel = 0;
+			
 
-			while (variavel < resultMod1) {
-				variavel += 7;
-				if (variavel == resultMod1 || variavel > resultMod1) {
-					variavel -= 7;
+			while (varLoop < resultMod1) {
+				varLoop += 7;
+				if (varLoop == resultMod1 || varLoop > resultMod1) {
+					varLoop -= 7;
 					break;
 				}
 			}
 
-			resultMod1 = resultMod1 - variavel;
+			resultMod1 = resultMod1 - varLoop;
 
 		}
 
-		System.out.println("Resultado modulo 1: " + resultMod1);
+		System.out.println("Resultado Modulo1: " + resultMod1);
+		
 
 		// modulo 2
 
@@ -83,19 +92,19 @@ public class Parte3 {
 		int fim = anoString.length();
 		int anoDoisDig = Integer.parseInt(anoString.substring(inicial, fim));
 
-		int menorMultiplo28 = 0;
+		varLoop = 0;
 		boolean menor = true;
 
 		while (menor == true) {
-			if (menorMultiplo28 < anoDoisDig) {
-				menorMultiplo28 += 28;
+			if (varLoop < anoDoisDig) {
+				varLoop += 28;
 			} else {
-				menorMultiplo28 -= 28;
+				varLoop -= 28;
 				menor = false;
 			}
 		};
 		
-		resultMod2 = anoDoisDig - menorMultiplo28;
+		resultMod2 = anoDoisDig - varLoop;		
 		int reultDivisao = anoDoisDig / 4;
 		resultMod2 = resultMod2 + reultDivisao;
 		
@@ -103,7 +112,7 @@ public class Parte3 {
 		int tabelAnoSecValue = 0;
 		
 		switch(tabelAnoSecString) {
-				case "16":
+			case "16":
 				tabelAnoSecValue = 0;
 				break;
 			case "17":
@@ -126,55 +135,59 @@ public class Parte3 {
 			resultMod2 -= 1;
 		}
 		
+		System.out.println("Resultado Modulo2: " + resultMod2);
 		
 		// module 3
 		
 		resultMod3 = resultMod1 + resultMod2;
-		
-		System.out.println("soma do modulo1 + modulo2 = " +resultMod3);
+	
 		
 		if (resultMod3 > 6) {
-			int varMod3 = 0;
+			varLoop = 0;
 			
-			while(varMod3 <= resultMod3) {
-				varMod3 += 7;
+			while(varLoop <= resultMod3) {
+				varLoop += 7;
 			}
 			
-			if(varMod3 > resultMod3) {
-				varMod3 -= 7;
+			if(varLoop > resultMod3) {
+				varLoop -= 7;
 			}
 			
-		   resultMod3 = resultMod3 - varMod3;
+		   resultMod3 = resultMod3 - varLoop;
 		}
 		
+		System.out.println("Resultado Modulo3: " + resultMod3);
+		
+		   String display = "dia da semana é:  ***** %s ****";
 		
 		switch (resultMod3) {
-		case 1:
-			System.out.println("dia da semana é Domingo");
+		case 1:			
+			System.out.println(String.format(display, "Domingo"));
 			break;
 		case 2:
-			System.out.println("dia da semana é Segunda");
+			System.out.println(String.format(display, "Segunda-Feira"));
 			break;
 		case 3:
-			System.out.println("dia da semana é Terça");
+			System.out.println(String.format(display, "Terça-Feira"));
 			break;
 		case 4:
-			System.out.println("dia da semana é Quarta");
+			System.out.println(String.format(display, "Quarta-Feira"));;
 			break;
 		case 5:
-			System.out.println("dia da semana é Quinta");
+			System.out.println(String.format(display, "Quinta-Feira"));
 			break;
 		case 6:
-			System.out.println("dia da semana é Sexta");
+			System.out.println(String.format(display, "Sexta-Feira"));
 			break;
 		case 7 :
-			System.out.println("dia da semana é Sabado");
+			System.out.println(String.format(display, "Sábado"));
 			break;
 		case 0 :
-			System.out.println("dia da semana é Sabado");
+			System.out.println(String.format(display, "Sábado"));
 			break;		
 		}
 		
+		varLoop = 0;
 	}
 
 }
