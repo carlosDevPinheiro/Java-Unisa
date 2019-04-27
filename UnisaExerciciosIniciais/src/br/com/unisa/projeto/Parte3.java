@@ -67,8 +67,7 @@ public class Parte3 {
 		// zerando varivel de loop
 		varLoop = 0;
 		
-		if (resultMod1 > 6) {
-			
+		if (resultMod1 > 6) {			
 
 			while (varLoop < resultMod1) {
 				varLoop += 7;
