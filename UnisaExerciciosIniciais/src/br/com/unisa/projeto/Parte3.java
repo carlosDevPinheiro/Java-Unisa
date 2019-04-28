@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Parte3 {
 
+	// url do pastebin => https://pastebin.com/iwLQEexD
+	
 	public static void main(String[] args) {
 
 		Scanner input = new Scanner(System.in);
@@ -93,7 +95,7 @@ public class Parte3 {
 
 		}
 
-		System.out.println("Resultado Modulo1: " + resultMod1);
+	//	System.out.println("Resultado Modulo1: " + resultMod1);
 		
 
 		// modulo 2
@@ -146,7 +148,7 @@ public class Parte3 {
 			resultMod2 -= 1;
 		}
 		
-		System.out.println("Resultado Modulo2: " + resultMod2);
+	//	System.out.println("Resultado Modulo2: " + resultMod2);
 		
 		// module 3
 		
@@ -167,7 +169,7 @@ public class Parte3 {
 		   resultMod3 = resultMod3 - varLoop;
 		}
 		
-		System.out.println("Resultado Modulo3: " + resultMod3);
+	//	System.out.println("Resultado Modulo3: " + resultMod3);
 		
 		   String display = "dia da semana é:  ***** %s ****";
 		
