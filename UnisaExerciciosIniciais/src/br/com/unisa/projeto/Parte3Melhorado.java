@@ -13,16 +13,11 @@ public class Parte3Melhorado {
 		Scanner input = new Scanner(System.in);
 		
 		System.out.print("Digite o dia: ");		
-		dia = input.nextInt();
-		ehValido(dia,1,31,"Dia incorreto");
-		
+		dia = ehValido(input.nextInt(),1,31,"Dia incorreto");		
 		System.out.print("Digite o mes: ");
-		mes = input.nextInt();
-		ehValido(mes,1,12,"Dia incorreto");
-		
+		mes = ehValido(input.nextInt(),1,12,"mes incorreto");		
 		System.out.print("Digite o ano: ");
-		ano = input.nextInt();
-		ehValido(ano,1900,2031,"Dia incorreto");
+		ano = ehValido(input.nextInt(),1900,3000,"ano incorreto");
 		
 		input.close();
 

@@ -8,6 +8,7 @@ public class Parte3 {
 
 		Scanner input = new Scanner(System.in);
 		Integer dia,mes,ano, mesTabela, resultMod2, resultMod1, resultMod3, varLoop = 0;
+		Boolean bissexto = false;
 
 		System.out.print("Digite o dia: ");
 		dia = input.nextInt();
@@ -17,6 +18,17 @@ public class Parte3 {
 		ano = input.nextInt();
 		
 		input.close();
+		
+		
+		if ((ano % 4) == 0 && (ano % 100) != 0) {
+			bissexto = true;			
+		} else if (bissexto == false && dia > 28 && mes == 2) {
+			
+			if(dia > 28) {
+				System.out.println("Dia Invalido");
+				return;
+			}
+		}
 
 		// convetendo o mes para a tabela meses da formula
 		switch (mes) {
@@ -185,6 +197,9 @@ public class Parte3 {
 			System.out.println(String.format(display, "Sábado"));
 			break;		
 		}
+		
+		if (bissexto.equals(true)) 
+			System.out.println("Esse ano é Bissexto");			
 		
 		varLoop = 0;
 	}
