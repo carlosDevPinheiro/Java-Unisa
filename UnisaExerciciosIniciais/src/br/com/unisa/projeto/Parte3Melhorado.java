@@ -8,20 +8,21 @@ public class Parte3Melhorado {
 
 	public static void main(String[] args) throws Exception {
 
-		Integer dia, mes , ano, temp = 0, resultMod2, resultMod1, resultMod3;
-
+		Integer dia, mes, ano, temp = 0, resultMod2, resultMod1, resultMod3, anoDigFinal, anoDigInicial;
+		boolean bissexto = false;
 		Scanner input = new Scanner(System.in);
-		
-		System.out.print("Digite o dia: ");		
-		dia = ehValido(input.nextInt(),1,31,"Dia incorreto");		
+
+		System.out.print("Digite o dia: ");
+		dia = ehValido(input.nextInt(), 1, 31, "Dia incorreto");
 		System.out.print("Digite o mes: ");
-		mes = ehValido(input.nextInt(),1,12,"mes incorreto");		
+		mes = ehValido(input.nextInt(), 1, 12, "mes incorreto");
 		System.out.print("Digite o ano: ");
-		ano = ehValido(input.nextInt(),1900,3000,"ano incorreto");
-		
+		ano = ehValido(input.nextInt(), 1900, 3000, "ano incorreto");
+
 		input.close();
 
 		Map<Integer, Integer> tbMeses = new HashMap<Integer, Integer>();
+		;
 		Map<Integer, Integer> tbSeculos = new HashMap<Integer, Integer>();
 		Map<Integer, String> tbSemanas = new HashMap<Integer, String>();
 
@@ -37,10 +38,19 @@ public class Parte3Melhorado {
 		tbMeses.put(9, 5);
 		tbMeses.put(10, 0);
 		tbMeses.put(11, 3);
-		tbMeses.put(12, 5);	
+		tbMeses.put(12, 5);
 
+		bissexto = (ano % 4) == 0 && (ano % 100) != 0 ? true : false;
+		if(bissexto && dia > 29 && mes == 2) {
+			System.out.println("dia invalido");
+			return;
+		}		    
+		else if(!bissexto && dia > 28 && mes == 2){
+			System.out.println("dia invalido");
+			return;
+		}
+		
 		// modulo1
-
 		resultMod1 = dia + (tbMeses.get(mes).intValue());
 
 		if (resultMod1 > 6)
@@ -48,14 +58,11 @@ public class Parte3Melhorado {
 
 		// modulo2
 
-		String anoInicial = ano.toString();
-		ano = Integer.parseInt(ano.toString().substring(ano.toString().length() - 2, ano.toString().length()));
-
-		resultMod2 = ObterMenorMulltiplo(ano, 28, false);
-
-		temp = ano - resultMod2;
-		resultMod2 = ano / 4;
-
+		anoDigFinal = ano % 100;
+		anoDigInicial = ano / 100;
+		resultMod2 = ObterMenorMulltiplo(anoDigInicial, 28, false);
+		temp = anoDigFinal - resultMod2;
+		resultMod2 = anoDigFinal / 4;
 		resultMod2 = temp + resultMod2;
 
 		// populnado seculos
@@ -65,7 +72,7 @@ public class Parte3Melhorado {
 		tbSeculos.put(19, 1);
 		tbSeculos.put(20, 0);
 
-		resultMod2 += tbSeculos.get(Integer.parseInt(anoInicial.substring(0, 2)));
+		resultMod2 += tbSeculos.get(anoDigInicial);
 
 		if (mes < 3)
 			resultMod2 -= 1;
@@ -75,7 +82,7 @@ public class Parte3Melhorado {
 
 		if (resultMod3 > 6)
 			resultMod3 = resultMod3 - ObterMenorMulltiplo(resultMod3, 7, true);
-		
+
 		// populando a tabela semanas
 		tbSemanas.put(1, "Domingo");
 		tbSemanas.put(2, "Segunda-Feira");
@@ -88,9 +95,11 @@ public class Parte3Melhorado {
 
 		System.out.println(String.format("O dia da Semana é: ****** %s ********", tbSemanas.get(resultMod3)));
 
+		if (bissexto)
+			System.out.println("Ano é bissexto !");
+
 	}
 
-	
 	public static int ObterMenorMulltiplo(int valor, int multiplicador, boolean podeSerigual) {
 		int varLoop = 0;
 
@@ -105,12 +114,12 @@ public class Parte3Melhorado {
 		}
 		return varLoop;
 	}
-	
+
 	public static int ehValido(int value, int minimo, int maximo, String mensagem) throws Exception {
-		
-		if (value < minimo || value > maximo) {		
-			throw new  Exception(mensagem);			
-		} 		
+
+		if (value < minimo || value > maximo) {
+			throw new Exception(mensagem);
+		}
 		return value;
 	}
 }
